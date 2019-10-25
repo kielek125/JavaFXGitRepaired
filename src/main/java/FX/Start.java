@@ -13,7 +13,7 @@ public class Start extends Application {
     public void start(Stage primaryStage) {
 
         //Tworzymy obiekt grupy
-        TextField textField1 = new TextField();
+        //TextField textField1 = new TextField();
         Group group = new Group(MyEvents.getGroup());
 
         //Tworzymy scene poprzez podanie klasy Group, wysokosci i szerokosci

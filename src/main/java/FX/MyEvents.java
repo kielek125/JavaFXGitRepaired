@@ -49,7 +49,7 @@ public class MyEvents {
         box.setTranslateY(150);
         box.setTranslateZ(50);
 
-        Text text = new Text("Type any letter to rotate the box, and click on the box to stop the rotation");
+        Text text = new Text("Najedź myszką na figurę, następnie kliknij.");
         text.setFont(Font.font(null, FontWeight.BOLD, 15));
         text.setFill(Color.BLACK);
         text.setX(20);
@@ -67,20 +67,15 @@ public class MyEvents {
         rotateTransition.setCycleCount(50);
         rotateTransition.setAutoReverse(false);
 
+        EventHandler<MouseEvent> eventHandlerTextField = event -> rotateTransition.play();
 
-        TextField textField = new TextField("abc");
-        textField.setLayoutX(50);
-        textField.setLayoutY(100);
-
-        EventHandler<KeyEvent> eventHandlerTextField = event -> rotateTransition.play();
-
-        textField.addEventHandler(KeyEvent.KEY_TYPED, eventHandlerTextField);
+        box.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandlerTextField);
 
         EventHandler<MouseEvent> eventHandlerBox = e -> rotateTransition.stop();
 
         box.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, eventHandlerBox);
 
-        return new Group(box, textField, text);
+        return new Group(box, text);
     }
     public static Group getGroup(){
         return new Group(boxEvent());

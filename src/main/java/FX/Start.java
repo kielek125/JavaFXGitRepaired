@@ -13,25 +13,20 @@ public class Start extends Application {
 
     public void start(Stage primaryStage) {
 
+
         //Tworzymy obiekt grupy
-        //Control btn = new Button();
-        Group group = new Group(MyEvents.circleEvent2());
+        Group group = MyTransformations.getGroup();
+
 
         //Tworzymy scene poprzez podanie klasy Group, wysokosci i szerokosci
-        Scene scene = new Scene(group ,600, 400);
-
+        Scene scene = new Scene(group ,1200, 800);
         //Ustawiamy kolor tła
         scene.setFill(Color.WHITE);
-
         //Ustawiamy tytuł okienka
         primaryStage.setTitle("Kurs java fx");
-
         //Dodajemy scene to stejdza
         primaryStage.setScene(scene);
-
         //Wyświetlamy okno
         primaryStage.show();
-
-
     }
 }

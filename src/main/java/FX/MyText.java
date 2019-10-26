@@ -19,7 +19,8 @@ public class MyText {
     }
     public static Text getText2() {
         Text text = new Text();
-        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.ITALIC, 20));
+        Font.getFontNames().stream().forEach(System.out::println);
+        text.setFont(Font.font("Yu Gothic UI Semilight", FontWeight.BOLD, FontPosture.ITALIC, 20));
         text.setX(50);
         text.setY(250);
 
@@ -28,7 +29,7 @@ public class MyText {
         return text;
     }
 
-    public static Group getGrup() {
+    public static Group getGroup() {
 
         return new Group(getText1(),getText2());
 

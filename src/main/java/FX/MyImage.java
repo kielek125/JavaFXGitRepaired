@@ -2,6 +2,7 @@ package FX;
 
 import javafx.scene.Group;
 import javafx.scene.effect.Bloom;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.*;
 import javafx.scene.paint.Color;
 
@@ -9,7 +10,7 @@ import java.io.FileInputStream;
 
 public class MyImage {
     public static ImageView getImageFromWeb(){
-        Image image = new Image("https://cdn.pixabay.com/photo/2016/10/17/10/52/wind-farm-1747331_960_720.jpg");
+        Image image = new Image("https://www.tutorialspoint.com/green/images/logo.png");
 
         ImageView imageView = new ImageView(image);
         imageView.setX(100);
@@ -20,8 +21,8 @@ public class MyImage {
 
         imageView.setPreserveRatio(false);
 
-        Bloom glow = new Bloom ();
-        glow.setThreshold(2);
+        Glow glow = new Glow();
+        glow.setLevel(4);
 
         imageView.setEffect(glow);
 
@@ -29,7 +30,7 @@ public class MyImage {
     }
     public static ImageView getImageFromResource() throws Exception{
         FileInputStream inputstream = new FileInputStream(
-                "D:\\JavaProjects\\JavaFX\\src\\main\\resources\\tabaluga.jpg");
+                "C:\\Users\\kielek\\IdeaProjects\\JavaFXGit\\src\\main\\resources\\tabaluga.jpg");
         Image image = new Image(inputstream);
         ImageView imageView = new ImageView(image);
         imageView.setX(50);
@@ -40,23 +41,26 @@ public class MyImage {
     }
     public static ImageView getImageFromPixels() throws Exception{
         FileInputStream inputstream = new FileInputStream(
-                "D:\\JavaProjects\\JavaFX\\src\\main\\resources\\tabaluga.jpg");
+                "C:\\Users\\kielek\\IdeaProjects\\JavaFXGit\\src\\main\\resources\\tabaluga2.jpg");
         Image image = new Image(inputstream);
         int width = (int)image.getWidth();
         int height = (int)image.getHeight();
 
-        WritableImage wImage = new WritableImage(width*2, height*2);
+        WritableImage wImage = new WritableImage(width, height);
         PixelReader pixelReader = image.getPixelReader();
         PixelWriter writer = wImage.getPixelWriter();
 
         for(int y = 0; y < height; y++) {
             for(int x = 0; x < width; x++) {
                 Color color = pixelReader.getColor(x, y);
-                writer.setColor(x, y, color.darker());
+                if (!color.equals(Color.WHITE)) {
+                    writer.setColor(x, y, color.darker());
+                }
+
             }
         }
 
-        ImageView imageView = new ImageView(image);
+        ImageView imageView = new ImageView(wImage);
 
         return imageView;
     }

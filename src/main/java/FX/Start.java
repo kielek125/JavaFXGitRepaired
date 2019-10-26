@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
 import javafx.stage.Stage;
 
 public class Start extends Application {
@@ -15,8 +16,7 @@ public class Start extends Application {
 
 
         //Tworzymy obiekt grupy
-        Group group = MyTransformations.getGroup();
-
+        Group group = MyShape3D.getGroup();
 
         //Tworzymy scene poprzez podanie klasy Group, wysokosci i szerokosci
         Scene scene = new Scene(group ,1200, 800);

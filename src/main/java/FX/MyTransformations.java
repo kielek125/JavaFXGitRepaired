@@ -49,6 +49,7 @@ public class MyTransformations {
         box.setDepth(200.0);
         box.setLayoutX(250);
         box.setLayoutY(220);
+
         Box box2 = new Box();
         box2.setWidth(100.0);
         box2.setHeight(150.0);
@@ -70,6 +71,8 @@ public class MyTransformations {
         Rotate rxBox = new Rotate(30,0,0,0,Rotate.X_AXIS);
         Rotate ryBox = new Rotate(30,0,0,0,Rotate.Y_AXIS);
         Rotate rzBox = new Rotate(90,-50,-75,0,Rotate.Z_AXIS);
+        //-50 to połowa szerokości box
+        //-75 to połowa wysokości box
 
         box.getTransforms().addAll(rzBox);
 

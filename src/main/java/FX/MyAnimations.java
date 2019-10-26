@@ -32,7 +32,6 @@ public class MyAnimations {
         rotateTransition.setAutoReverse(false);
         rotateTransition.play();
 
-        //Transition trs = new Tra
 
         return hexagon;
     }
@@ -47,10 +46,10 @@ public class MyAnimations {
         ScaleTransition scaleTransition = new ScaleTransition();
         scaleTransition.setDuration(Duration.millis(2000));
         scaleTransition.setNode(circle);
-        scaleTransition.setByY(1.5);
-        scaleTransition.setByX(1.5);
+        scaleTransition.setByY(2);
+        scaleTransition.setByX(2);
         scaleTransition.setCycleCount(50);
-        scaleTransition.setAutoReverse(false);
+        scaleTransition.setAutoReverse(true);
         scaleTransition.play();
 
         return circle;
@@ -66,9 +65,9 @@ public class MyAnimations {
         TranslateTransition translateTransition = new TranslateTransition();
         translateTransition.setDuration(Duration.millis(2000));
         translateTransition.setNode(circle);
-        translateTransition.setByX(300);
+        translateTransition.setByY(300);
         translateTransition.setCycleCount(50);
-        translateTransition.setAutoReverse(false);
+        translateTransition.setAutoReverse(true);
         translateTransition.play();
 
         return circle;

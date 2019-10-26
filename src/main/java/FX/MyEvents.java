@@ -17,6 +17,8 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class MyEvents {
     public static Group circleEvent(){
         Circle circle = new Circle();
@@ -31,12 +33,12 @@ public class MyEvents {
         text.setFill(Color.BLACK);
         text.setX(150);
         text.setY(50);
-
-        EventHandler<MouseEvent> eventHandler = e -> {
-            System.out.println("Hello World");
+        AtomicInteger i = new AtomicInteger(1);
+        EventHandler<KeyEvent> eventHandler = event -> {
+            System.out.println(i.getAndIncrement() + ": Hello World");
             circle.setFill(Color.DARKSLATEBLUE);
         };
-        circle.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+        circle.addEventFilter(KeyEvent.KEY_PRESSED, eventHandler);
 
         return new Group(circle, text);
     }
@@ -62,12 +64,12 @@ public class MyEvents {
         box.setMaterial(material);
 
         RotateTransition rotateTransition = new RotateTransition();
-        rotateTransition.setDuration(Duration.millis(1000));
+        rotateTransition.setDuration(Duration.millis(2000));
         rotateTransition.setNode(box);
         rotateTransition.setAxis(Rotate.Y_AXIS);
         rotateTransition.setByAngle(360);
         rotateTransition.setCycleCount(50);
-        rotateTransition.setAutoReverse(false);
+        rotateTransition.setAutoReverse(true);
 
         EventHandler<MouseEvent> eventHandlerTextField = event -> rotateTransition.play();
 
@@ -75,7 +77,7 @@ public class MyEvents {
 
         EventHandler<MouseEvent> eventHandlerBox = e -> rotateTransition.stop();
 
-        box.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, eventHandlerBox);
+        box.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandlerBox);
 
         return new Group(box, text);
     }
@@ -101,18 +103,16 @@ public class MyEvents {
         path.getElements().addAll(line1, line2, line3, line4, line5);
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.millis(1000));
+        pathTransition.setDuration(Duration.millis(10000));
         pathTransition.setNode(circle);
         pathTransition.setPath(path);
-        pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pathTransition.setCycleCount(50);
-        pathTransition.setAutoReverse(false);
+        pathTransition.setAutoReverse(true);
 
-        Rectangle playButton = new Rectangle();
-        playButton.setX(260);
-        playButton.setY(250);
-        playButton.setWidth(20);
-        playButton.setHeight(20);
+        Button playButton = new Button("start");
+        playButton.setLayoutX(260);
+        playButton.setLayoutY(250);
+        playButton.setPrefSize(60,30);
 
         circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -128,11 +128,11 @@ public class MyEvents {
             }
         }));
 
-        Rectangle stopButton = new Rectangle();
-        stopButton.setX(300);
-        stopButton.setY(250);
-        stopButton.setWidth(20.0f);
-        stopButton.setHeight(20.0f);
+        Button stopButton = new Button("Stop");
+        stopButton.setLayoutX(350);
+        stopButton.setLayoutY(250);
+        stopButton.setPrefSize(60, 30);
+
         stopButton.setOnMouseClicked((new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 System.out.println("Stop");
@@ -143,6 +143,7 @@ public class MyEvents {
         return new Group(circle, playButton, stopButton);
     }
     public static Group getGroup(){
-        return new Group(circleEvent2());
+
+        return new Group(circleEvent());
     }
 }

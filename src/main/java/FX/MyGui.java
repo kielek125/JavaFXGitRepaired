@@ -1,6 +1,7 @@
 package FX;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -235,10 +236,14 @@ public class MyGui {
         lv.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         lv.getSelectionModel().selectedItemProperty().addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
-            System.out.println("ListView selekcja zmieniona z = "
-                    + oldValue + " na = " + newValue);
+            System.out.println(observable);
+            System.out.println(observable.getClass().getTypeName());
+            System.out.println(observable.getClass().getName());
+            ReadOnlyObjectProperty<String> observe = (ReadOnlyObjectProperty)observable;
+            //System.out.println("ListView selekcja zmieniona z = "
+                 //   + oldValue + " na = " + newValue);
 
-            System.out.println(lv.getSelectionModel().getSelectedItems());
+            //System.out.println(lv.getSelectionModel().getSelectedItems());
         });
 
         return lv;
@@ -306,7 +311,8 @@ public class MyGui {
     }
 
     public static Group getGroup(Stage stage) {
-        return new Group(gui(stage));
+
+        return new Group(myListView());
     }
 
 }
